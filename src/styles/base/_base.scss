@@ -1,0 +1,9 @@
+@use '../abstracts/variables' as variables;
+@use '../abstracts/mixins' as mixins;
+
+$page-wrapper-break: xl;
+
+.page-wrapper {
+    max-width: variables.$page-max-width;
+    margin: 0 auto;
+}

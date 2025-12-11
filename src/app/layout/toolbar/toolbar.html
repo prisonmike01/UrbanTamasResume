@@ -1,5 +1,9 @@
 <mat-toolbar class="main-header">
-    <div routerLink="/">{{ appTitle() }}</div>
+    <img routerLink="/" class="main-header__logo" src="assets/images/lorem-ipsum-logo.png" alt="logo">
     <span class="example-spacer"></span>
-    <button matButton>Products</button>
+    <nav class="main-header__buttons">
+        <button routerLink="/products" matButton>Products</button>
+        <button routerLink="/cart" mat-button>Cart</button>
+        <button routerLink="/register" matButton="filled">Sign up</button>
+    </nav>
 </mat-toolbar>

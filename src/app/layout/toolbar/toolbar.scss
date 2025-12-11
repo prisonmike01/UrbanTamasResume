@@ -1,13 +1,18 @@
 .main-header {
   padding: 0 24px;
   position: relative;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
   z-index: 10;
 
-  .title {
-    text-decoration: none;
+  &__logo {
+    height: 32px; // reszponzív méret
+    width: auto;
   }
-
+  
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 }
 
 .example-spacer {
