@@ -1,5 +1,5 @@
 <mat-toolbar class="main-header">
-    <img routerLink="/" class="main-header__logo" src="assets/images/lorem-ipsum-logo.png" alt="logo">
+    <div routerLink="/" class="main-header__title">{{ toolbarTitle() }}</div>
     <span class="example-spacer"></span>
     <nav class="main-header__buttons">
         <button routerLink="/products" matButton>Products</button>

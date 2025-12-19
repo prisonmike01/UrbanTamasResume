@@ -11,5 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './toolbar.scss',
 })
 export class Toolbar {
+  readonly toolbarTitle = input.required<string>();
   
 }
