@@ -1,0 +1,31 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins';
+
+.hero {
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    &__title {
+        text-align: center;
+
+        @include mixins.respond-to(sm) {
+            text-align: left;
+        }
+    }
+
+    &__subtitle {
+        text-align: center;
+
+        @include mixins.respond-to(sm) {
+            text-align: left;
+        }
+    }
+}
+
+ul {
+  padding-left: revert;
+}

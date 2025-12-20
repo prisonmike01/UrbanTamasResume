@@ -1,1 +1,11 @@
-asdasd
+<main class="hero">
+    @if (currentTab()) {
+        <mat-tab-group headerPosition="below" [(selectedIndex)]="selectedIndex" class="home-banner-tabs">
+            @for (tab of heroTabs(); track tab.id) {
+                <mat-tab [label]="tab.label">
+                    <app-hero-banner [currentTab]="currentTab()"></app-hero-banner>
+                </mat-tab>
+            }
+        </mat-tab-group>
+    }
+</main>
