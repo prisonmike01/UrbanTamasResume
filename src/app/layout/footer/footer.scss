@@ -15,8 +15,6 @@ $footer-logo-max-width: 250px;
         align-items: flex-start;
         background-color: $footer-conent-backround;
         padding: vars.$page-sm-horizontal-padding vars.$page-sm-horizontal-padding;
-
-
         gap: 70px;
 
         ul {
@@ -29,7 +27,6 @@ $footer-logo-max-width: 250px;
         @include mixins.respond-to(sm) {
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
             padding: vars.$page-xl-horizontal-padding vars.$page-xl-horizontal-padding;
         }
     }
