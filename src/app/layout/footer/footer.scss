@@ -1,0 +1,53 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins';
+
+$footer-content-height: 100px;
+$footer-conent-backround: var(--mat-sys-secondary-container);
+$footer-bottom-height: 64px;
+$footer-bottom-backround: var(--mat-sys-primary-container);
+$footer-logo-max-width: 250px;
+
+.footer {
+
+    &__content {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        background-color: $footer-conent-backround;
+        padding: vars.$page-sm-horizontal-padding vars.$page-sm-horizontal-padding;
+
+
+        gap: 70px;
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @include mixins.respond-to(sm) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: vars.$page-xl-horizontal-padding vars.$page-xl-horizontal-padding;
+        }
+    }
+
+    &__logo {
+        width: $footer-logo-max-width;
+        max-width: 100%;
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 32px;
+
+        background-color: $footer-bottom-backround;
+        height: $footer-bottom-height;
+    }
+}
+
