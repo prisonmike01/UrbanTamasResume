@@ -21,11 +21,11 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
             subtitle: 'Objectives',
             author: '',
             data: [
-                'apply modern frontend development best practices',
-                'create a structured, maintainable codebase',
+                'apply best practices',
+                'create a structured codebase',
                 'demonstrate component-based architecture',
-                'ensure clear data flow and predictable state management',
-                'provide a responsive and user-friendly interface',
+                'ensure clear data flow',
+                'provide a responsive interface',
             ],
         }
     },

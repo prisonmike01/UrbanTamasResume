@@ -1,0 +1,11 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins';
+
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
+}

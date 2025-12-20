@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Gingerbread",
+    "price": 12.99,
+    "description": "A spiced baked treat traditionally enjoyed during the Christmas season.",
+    "imageUrl": "assets/images/products/gingerbread.jpg",
+    "types": ["christmas", "sweet"]
+  },
+  {
+    "id": 2,
+    "name": "Panettone",
+    "price": 8.99,
+    "description": "Fluffy Italian sweet bread filled with dried fruits and often served at Christmas.",
+    "imageUrl": "assets/images/products/panettone.jpg",
+    "types": ["christmas", "bakery-goods"]
+  },
+  {
+    "id": 3,
+    "name": "Chocolate",
+    "price": 1.99,
+    "description": "Rich and versatile sweet enjoyed in countless forms, from desserts to confectionery.",
+    "imageUrl": "assets/images/products/chocolate.jpg",
+    "types": ["sweet", "dessert"]
+  },
+  {
+    "id": 4,
+    "name": "Pumpkin roll",
+    "price": 4.99,
+    "description": "Soft pumpkin-flavored sponge cake rolled with a creamy filling, popular in autumn and winter.",
+    "imageUrl": "assets/images/products/pumkim_roll.jpg",
+    "types": ["dessert"]
+  },
+  {
+    "id": 5,
+    "name": "Bananas",
+    "price": 1.49,
+    "description": "Fresh bananas from the farm.",
+    "imageUrl": "assets/images/products/banana.jpg",
+    "types": ["summer", "dessert"]
+  },
+  {
+    "id": 6,
+    "name": "Orange",
+    "price": 2.49,
+    "description": "Juicy and sweet oranges.",
+    "imageUrl": "assets/images/products/oranges.jpg",
+    "types": ["summer", "dessert"]
+  }
+]

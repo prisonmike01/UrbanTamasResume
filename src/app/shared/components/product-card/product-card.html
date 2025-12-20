@@ -1,0 +1,24 @@
+<mat-card class="product-card">
+  <img mat-card-image [ngSrc]="product().imageUrl" [alt]="product().name" width="300" height="200">
+  <mat-card-header>
+    <mat-card-title>
+      {{ product().name }}
+      <mat-chip-set aria-label="item type">
+        @for (item of product().types; track item) {
+          <mat-chip>{{ item }}</mat-chip>
+        }
+      </mat-chip-set>
+    </mat-card-title>
+    <mat-card-subtitle>{{ product().price | currency }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{ product().description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button matButton="tonal">
+      <mat-icon>add_shopping_cart</mat-icon>Add to Cart</button>
+    <button matButton>
+      <mat-icon>visibility</mat-icon>View Details</button>
+  </mat-card-actions>
+</mat-card>
