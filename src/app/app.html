@@ -1,3 +1,21 @@
-<app-toolbar [toolbarTitle]="title()"></app-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+        <!-- Sidenav content -->
+        <mat-nav-list>
+            <a mat-list-item routerLink="/" (click)="sidenav.close()">{{ title() }}</a>
+            <a mat-list-item routerLink="/products" (click)="sidenav.close()">Products</a>
+            <a mat-list-item routerLink="/cart" (click)="sidenav.close()">Cart</a>
+            <a mat-list-item routerLink="/register" (click)="sidenav.close()">Sign up</a>            
+        </mat-nav-list>
+    </mat-sidenav>
 
-<router-outlet></router-outlet>
+    <mat-sidenav-content class="sidenav-content">
+        <app-toolbar [toolbarTitle]="title()" (menuToggled)="sidenav.toggle()"></app-toolbar>
+
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

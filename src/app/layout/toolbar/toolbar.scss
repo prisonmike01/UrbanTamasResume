@@ -1,10 +1,13 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/mixins';
 
+$toolbar-height: 64px;
+
 .main-header {
   padding: 0 24px;
   position: relative;
   z-index: 10;
+  min-height: $toolbar-height;
 
   &__title {
     text-decoration: none;
@@ -15,9 +18,21 @@
   }
 
   &__buttons {
-    display: flex;
-    align-items: center;
+    display: none;
     gap: 12px;
+
+    @include mixins.respond-to(sm) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__mobile-menu-btn {
+    display: block;
+
+    @include mixins.respond-to(sm) { 
+      display: none;
+    }
   }
 }
 

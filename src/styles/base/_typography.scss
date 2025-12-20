@@ -34,4 +34,10 @@ h6 {
     font: var(--mat-sys-label-large);
     font-size: 1rem;
     color: var(--mat-sys-on-secondary-container);
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--mat-sys-primary);
+    }
 }
