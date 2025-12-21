@@ -1,8 +1,28 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/mixins';
 
+:host {
+  width: 100%;
+}
 
-.product-grid {
+.products-section {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-container-dark);
+
+  &__title {
+    padding: 16px 12px 8px;
+    text-align: center;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: end;
+    padding: 12px;
+  }
+}
+
+.products-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

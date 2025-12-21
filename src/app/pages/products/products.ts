@@ -1,15 +1,36 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ProductService } from '../../core/services/product.service';
 import { ProductCard } from '../../shared/components/product-card/product-card';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCard],
+  imports: [ProductCard, MatPaginatorModule],
   templateUrl: './products.html',
   styleUrl: './products.scss',
 })
 export class Products {
   private readonly productService = inject(ProductService);
-  protected readonly products = toSignal(this.productService.getProducts());
+  private readonly route = inject(ActivatedRoute);
+
+  protected readonly products = toSignal(this.productService.getProducts(), { initialValue: [] });
+  protected readonly title = toSignal(this.route.title);
+
+  protected readonly pageIndex = signal(0);
+  protected readonly pageSize = signal(2);
+  protected readonly paginatorLength = computed(() => this.products().length);
+
+  protected readonly pagedProducts = computed(() => {
+    const products = this.products();
+    const startIndex = this.pageIndex() * this.pageSize();
+    const endIndex = startIndex + this.pageSize();
+    return products.slice(startIndex, endIndex);
+  });
+
+  protected onPageChange(event: PageEvent) {
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+  }
 }

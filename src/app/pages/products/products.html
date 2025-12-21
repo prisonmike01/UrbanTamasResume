@@ -1,5 +1,16 @@
-<div class="product-grid">
-  @for (product of products(); track product.id) {
+<section class="products-section">
+  <div class="products-section__title">
+    <h3>{{ title() }}</h3>
+  </div>
+
+  <div class="products-section__header">
+  </div>
+
+  <div class="products-section__body">
+    <div class="products-grid">
+      @for (product of pagedProducts(); track product.id) {
     <app-product-card [product]="product"></app-product-card>
   }
 </div>
+  </div>
+</section>

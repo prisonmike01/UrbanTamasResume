@@ -24,7 +24,7 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
                 'apply best practices',
                 'create a structured codebase',
                 'demonstrate component-based architecture',
-                'ensure clear data flow',
+                'ensure unidirectional data flow',
                 'provide a responsive interface',
             ],
         }
