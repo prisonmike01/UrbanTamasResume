@@ -4,13 +4,16 @@
   </div>
 
   <div class="products-section__header">
+    <mat-paginator [length]="paginatorLength()" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
+      [pageSizeOptions]="[2, 4, paginatorLength()]" (page)="onPageChange($event)" aria-label="Select page">
+    </mat-paginator>
   </div>
 
   <div class="products-section__body">
     <div class="products-grid">
       @for (product of pagedProducts(); track product.id) {
-    <app-product-card [product]="product"></app-product-card>
-  }
-</div>
+      <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
   </div>
 </section>

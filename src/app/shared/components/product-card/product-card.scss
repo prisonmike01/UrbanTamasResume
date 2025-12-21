@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100%;
   width: 300px;
-  
+
   img[mat-card-image] {
     object-fit: cover;
     height: 200px;
@@ -11,8 +11,8 @@
     margin: 0;
   }
 
-  mat-card-subtitle { 
-    margin-top: 6px;;
+  mat-card-subtitle {
+    margin-top: 6px;
   }
 
   mat-card-content {
