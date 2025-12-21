@@ -1,5 +1,11 @@
+// Anuglar
 import { Component, input } from '@angular/core';
+
+// Material
+
+// App
 import { HeroTab } from '../../models/hero.model';
+
 
 @Component({
   selector: 'app-hero-banner',

@@ -1,5 +1,10 @@
+// Anuglar
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+// Material
+
+// App
 
 @Component({
   selector: 'app-footer',

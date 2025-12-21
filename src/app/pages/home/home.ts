@@ -1,6 +1,11 @@
+// Anuglar
 import { Component, computed, inject, model, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
+// Material
 import { MatTabsModule } from '@angular/material/tabs';
+
+// App
 import { HeroBanner } from '../../shared/components/hero-banner/hero-banner';
 import { HeroService } from '../../core/services/hero.service';
 
@@ -16,6 +21,4 @@ export class Home {
   
   protected readonly selectedIndex = model<number>(0);
   readonly currentTab = computed(() => this.heroTabs()[this.selectedIndex()]);
-
-
 }

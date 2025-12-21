@@ -1,10 +1,16 @@
+// Anuglar
 import { Component, input } from '@angular/core';
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
+
+// Material
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Product } from '../../models/product.model';
 import { MatChipSet, MatChip } from '@angular/material/chips';
 import { MatIcon } from "@angular/material/icon";
+
+// App
+import { Product } from '../../models/product.model';
+
 
 @Component({
   selector: 'app-product-card',
