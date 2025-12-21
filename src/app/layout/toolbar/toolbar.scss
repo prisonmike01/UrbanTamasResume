@@ -1,9 +1,14 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/mixins';
+@use '@angular/material' as mat;
 
 $toolbar-height: 64px;
 
 .main-header {
+  @include mat.toolbar-overrides((
+    container-background-color: var(--mat-sys-primary-container),
+  ));
+
   padding: 0 24px;
   position: relative;
   z-index: 10;

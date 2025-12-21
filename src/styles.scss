@@ -10,6 +10,16 @@
 @use './styles/base/typography';
 @include mat.core();
 
+:root {
+  --secondary-container-dark:
+    color-mix(
+      in srgb,
+      var(--mat-sys-secondary-container) 30%,
+      black 70%
+    );
+}
+
+
 html {
   @include mat.theme((
     color: (
@@ -41,8 +51,3 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-:root {
-  --mat-toolbar-container-background-color: var(--mat-sys-primary-container);
-}
-

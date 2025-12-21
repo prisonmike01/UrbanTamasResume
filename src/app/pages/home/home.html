@@ -1,6 +1,6 @@
 <main class="hero">
     @if (currentTab()) {
-        <mat-tab-group headerPosition="below" [(selectedIndex)]="selectedIndex" class="home-banner-tabs">
+        <mat-tab-group headerPosition="below" [(selectedIndex)]="selectedIndex">
             @for (tab of heroTabs(); track tab.id) {
                 <mat-tab [label]="tab.label">
                     <app-hero-banner [currentTab]="currentTab()"></app-hero-banner>

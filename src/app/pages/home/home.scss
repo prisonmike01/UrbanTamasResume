@@ -1,18 +1,37 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/mixins';
+@use '@angular/material' as mat;
 
 $hero-min-height: 300px;
 $tab-text-color: red;
 $hero-backround-color: var(--mat-sys-secondary);
 
+
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
 .hero {
+    @include mat.tabs-overrides((active-focus-indicator-color: var(--mat-sys-surface-tint),
+            active-focus-label-text-color: var(--mat-sys-inverse-primary),
+        ));
+
+
     display: flex;
     flex: 1;
     min-height: $hero-min-height;
     padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding 0;
     background-color: $hero-backround-color;
 
-    color: var(--mat-sys-on-secondary);
+    // Target the tab group to override CSS variables
+    mat-tab-group {
+        justify-content: space-between;
+        width: 100%;
+
+    }
 
     @include mixins.respond-to(lg) {
         background-image: url('../../../assets/images/lorem-ipsum-logo.png');
@@ -24,17 +43,4 @@ $hero-backround-color: var(--mat-sys-secondary);
     @include mixins.respond-to(xl) {
         padding: vars.$page-xl-vertical-padding vars.$page-xl-horizontal-padding 0;
     }
-}
-
-:host {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-// Target the tab group to override CSS variables
-.home-banner-tabs {
-    justify-content: space-between;
-    width: 100%;
-
 }
