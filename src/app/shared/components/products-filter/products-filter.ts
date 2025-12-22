@@ -22,7 +22,7 @@ export class ProductsFilter {
   protected readonly productTypes = PRODUCT_TYPES;
 
   protected readonly step = 3;
-  protected readonly maxRange = 25;
+  protected readonly maxRange = 24;
   protected readonly minPrice = signal(0);
   protected readonly maxPrice = signal(24);
   protected readonly onlyFavorites = signal(false);

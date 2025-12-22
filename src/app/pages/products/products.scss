@@ -18,10 +18,30 @@
 
   &__header {
     display: flex;
-    justify-content: end;
+    flex-direction: column;
+    align-items: center;
     padding: 12px;
+    gap: 16px;
+    flex-wrap: wrap;
 
     @include mat.paginator-overrides((container-background-color: rgba(0, 0, 0, 0)));
+
+    mat-form-field {
+      grid-column: 2;
+      justify-self: center;
+    }
+
+    mat-paginator {
+      grid-column: 3;
+      justify-self: end;
+    }
+
+    @include mixins.respond-to(md) {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      justify-content: normal;
+
+    }
   }
 
   &__body {

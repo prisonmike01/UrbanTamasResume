@@ -4,8 +4,19 @@
   </div>
 
   <div class="products-section__header">
-    <mat-paginator [length]="paginatorLength()" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
-      [pageSizeOptions]="[2, 4, paginatorLength()]" []="" (page)="onPageChange($event)" aria-label="Select page">
+    <mat-form-field appearance="outline" class="search-bar">
+      <mat-label>Search products</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input type="text" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of facade.suggestedProducts(); track option) {
+          <mat-option [value]="option">{{option}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-paginator [length]="facade.paginatorLength()" [pageSize]="facade.pageSize()" [pageIndex]="facade.pageIndex()"
+      [pageSizeOptions]="[2, 4, facade.paginatorLength()]" (page)="onPageChange($event)" aria-label="Select page">
     </mat-paginator>
   </div>
 
@@ -13,7 +24,7 @@
     <app-products-filter (filterChange)="onFilterChange($event)"></app-products-filter>
 
     <div class="products-section__grid">
-      @for (product of pagedProducts(); track product.id) {
+      @for (product of facade.pagedProducts(); track product.id) {
       <app-product-card [product]="product"></app-product-card>
       }
     </div>
