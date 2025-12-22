@@ -1,11 +1,17 @@
 <mat-card class="product-card" appearance="outlined">
-  <img mat-card-image [ngSrc]="product().imageUrl" [alt]="product().name" width="300" height="200">
+  <div class="product-card__header">
+    <button matIconButton>
+      <mat-icon>favorite</mat-icon>
+    </button>    
+    <img mat-card-image [ngSrc]="product().imageUrl" [alt]="product().name" width="300" height="200">
+  </div>
+
   <mat-card-header>
     <mat-card-title>
       {{ product().name }}
       <mat-chip-set aria-label="item type">
         @for (item of product().types; track item) {
-          <mat-chip>{{ item }}</mat-chip>
+        <mat-chip>{{ item }}</mat-chip>
         }
       </mat-chip-set>
     </mat-card-title>
@@ -17,8 +23,10 @@
   </mat-card-content>
   <mat-card-actions>
     <button matButton="tonal">
-      <mat-icon>add_shopping_cart</mat-icon>Add to Cart</button>
+      <mat-icon>add_shopping_cart</mat-icon>Add to Cart
+    </button>
     <button matButton>
-      <mat-icon>visibility</mat-icon>View Details</button>
+      <mat-icon>visibility</mat-icon>View Details
+    </button>
   </mat-card-actions>
 </mat-card>

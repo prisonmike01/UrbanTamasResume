@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HeroTab } from "../../shared/models/hero.model";
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 
 const MOCK_HERO_TABS: Array<HeroTab> = [
     {
@@ -25,7 +25,7 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
                 'create a structured codebase',
                 'demonstrate component-based architecture',
                 'ensure unidirectional data flow',
-                'provide a responsive interface',
+                'provide a responsive (mobile-first) interface',
             ],
         }
     },
