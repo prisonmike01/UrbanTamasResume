@@ -25,7 +25,9 @@
 
     <div class="products-section__grid">
       @for (product of facade.pagedProducts(); track product.id) {
-      <app-product-card [product]="product" (toggleFavorite)="facade.toggleFavorite($event)"></app-product-card>
+      <app-product-card [product]="product" (toggleFavorite)="onToggleFavorite($event)"></app-product-card>
+      } @empty {
+        <p class="p4">No results found with the current filter.</p>
       }
     </div>
   </div>

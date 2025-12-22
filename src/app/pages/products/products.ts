@@ -11,6 +11,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // App
 import { ProductFacade } from '../../core/services/product.facade';
@@ -28,7 +29,8 @@ import { ProductFilter } from '../../shared/models/product.model';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   templateUrl: './products.html',
   styleUrl: './products.scss',
@@ -36,6 +38,7 @@ import { ProductFilter } from '../../shared/models/product.model';
 export class Products {
   protected readonly facade = inject(ProductFacade);
   private readonly route = inject(ActivatedRoute);
+  private readonly _snackBar = inject(MatSnackBar);
 
   protected readonly title = toSignal(this.route.title);
 
@@ -59,5 +62,17 @@ export class Products {
 
   protected onFilterChange(filter: ProductFilter) {
     this.facade.updateFilter(filter);
+  }
+
+  protected onToggleFavorite(productId: number) {
+    this.facade.toggleFavorite(productId);
+    const product = this.facade.products().find(p => p.id === productId);
+    const message = `${product?.name} ${(product?.favourite ? 'added to favorites' : 'removed from favorites')}`;
+    
+    this._snackBar.open(message, 'OK', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }
