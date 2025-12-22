@@ -1,6 +1,6 @@
 <mat-card class="product-card" appearance="outlined">
   <div class="product-card__header">
-    <button matIconButton>
+    <button matIconButton [class.favoriteProduct]="product().favourite">
       <mat-icon>favorite</mat-icon>
     </button>    
     <img mat-card-image [ngSrc]="product().imageUrl" [alt]="product().name" width="300" height="200">

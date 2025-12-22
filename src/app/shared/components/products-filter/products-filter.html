@@ -1,26 +1,31 @@
 <div class="products-filter">
-    <app-filter-section>
-        <mat-slide-toggle labelPosition="before">
-            <p class="p3">Show only favorite</p>
-        </mat-slide-toggle>
-    </app-filter-section>
+    <h5>Filters</h5>
 
-    <app-filter-section title="Filter by tags">
-        <!-- for -->
-        <ul>
-            <li>
-                <mat-checkbox>asd</mat-checkbox>
-            </li>
-        </ul>
-    </app-filter-section>
+    <div class="products-filter__body">
+        <app-filter-section>
+            <mat-slide-toggle labelPosition="before" (change)="onFavoriteChange($event)">
+                <p class="p3">Show only favorite</p>
+            </mat-slide-toggle>
+        </app-filter-section>
 
-    <app-filter-section title="Filter by price">
-        <div class="p3">
-            ${{ minPrice() }} - ${{ maxPrice() }}
-        </div>
-        <mat-slider [max]="maxRange" [step]="step">
-            <input [value]="minPrice()" (input)="onMinPriceChange($event)" matSliderStartThumb>
-            <input [value]="maxPrice()" (input)="onMaxPriceChange($event)" matSliderEndThumb>
-        </mat-slider>
-    </app-filter-section>
+        <app-filter-section title="Filter by tags">
+            <ul>
+                @for (type of productTypes; track type) {
+                <li>
+                    <mat-checkbox (change)="onTypeChange(type, $event)">{{ type }}</mat-checkbox>
+                </li>
+                }
+            </ul>
+        </app-filter-section>
+
+        <app-filter-section title="Filter by price">
+            <div class="p3">
+                ${{ minPrice() }} - ${{ maxPrice() }}
+            </div>
+            <mat-slider [max]="maxRange" [step]="step">
+                <input [value]="minPrice()" (input)="onMinPriceChange($event)" matSliderStartThumb>
+                <input [value]="maxPrice()" (input)="onMaxPriceChange($event)" matSliderEndThumb>
+            </mat-slider>
+        </app-filter-section>
+    </div>
 </div>

@@ -1,13 +1,14 @@
 // Angular
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 
 // Material
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 // App
 import { FilterSection } from '../filter-section/filter-section';
+import { PRODUCT_TYPES, ProductFilter, ProductType } from '../../models/product.model';
 
 @Component({
   selector: 'app-products-filter',
@@ -16,18 +17,51 @@ import { FilterSection } from '../filter-section/filter-section';
   styleUrl: './products-filter.scss',
 })
 export class ProductsFilter {
-  protected readonly step = 1;
+  public readonly filterChange = output<ProductFilter>();
+
+  protected readonly productTypes = PRODUCT_TYPES;
+
+  protected readonly step = 3;
   protected readonly maxRange = 25;
   protected readonly minPrice = signal(0);
-  protected readonly maxPrice = signal(25);
+  protected readonly maxPrice = signal(24);
+  protected readonly onlyFavorites = signal(false);
+  protected readonly selectedTypes = signal<ProductType[]>([]);
 
   protected onMinPriceChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.minPrice.set(Number(value));
+    this.emitFilterChange();
   }
 
   protected onMaxPriceChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.maxPrice.set(Number(value));
+    this.emitFilterChange();
+  }
+
+  protected onFavoriteChange(event: MatSlideToggleChange): void {
+    this.onlyFavorites.set(event.checked);
+    this.emitFilterChange();
+  }
+
+  protected onTypeChange(type: ProductType, event: MatCheckboxChange): void {
+    this.selectedTypes.update((types) => {
+      if (event.checked) {
+        return [...types, type];
+      } else {
+        return types.filter((t) => t !== type);
+      }
+    });
+    this.emitFilterChange();
+  }
+
+  // emitelünk egy ProductFilter objectet, amit az app-products komponens fogad
+  private emitFilterChange(): void {
+    this.filterChange.emit({
+      onlyFavorites: this.onlyFavorites(),
+      priceRange: { min: this.minPrice(), max: this.maxPrice() },
+      types: this.selectedTypes(),
+    });
   }
 }

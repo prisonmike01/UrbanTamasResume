@@ -1,5 +1,6 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/mixins';
+@use '@angular/material' as mat;
 
 :host {
   width: 100%;
@@ -19,6 +20,8 @@
     display: flex;
     justify-content: end;
     padding: 12px;
+
+    @include mat.paginator-overrides((container-background-color: rgba(0, 0, 0, 0)));
   }
 
   &__body {
@@ -26,14 +29,14 @@
     flex-direction: column;
     flex: 1 1 1024px;
 
+    app-products-filter {
+      flex: 0 0 280px;
+      padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
+    }
+
     @include mixins.respond-to(md) {
       flex-direction: row;
     }
-  }
-
-  app-products-filter {
-    flex: 0 0 280px;
-    padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
   }
 
   &__grid {

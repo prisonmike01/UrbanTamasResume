@@ -10,13 +10,17 @@
     flex-direction: column;
 
     [matIconButton] {
-      color: var(--mat-sys-error-container);
+      color: var(--mat-sys-error);
       border: none;
       position: absolute;
       top: 6px;
       left: 6px;
       right: 6px;
       z-index: 2;
+    }
+
+    .favoriteProduct {
+      color: var(--mat-sys-error-container);
     }
   }
 

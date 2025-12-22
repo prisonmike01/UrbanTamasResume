@@ -5,12 +5,12 @@
 
   <div class="products-section__header">
     <mat-paginator [length]="paginatorLength()" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
-      [pageSizeOptions]="[2, 4, paginatorLength()]" (page)="onPageChange($event)" aria-label="Select page">
+      [pageSizeOptions]="[2, 4, paginatorLength()]" []="" (page)="onPageChange($event)" aria-label="Select page">
     </mat-paginator>
   </div>
 
   <div class="products-section__body">
-    <app-products-filter></app-products-filter>
+    <app-products-filter (filterChange)="onFilterChange($event)"></app-products-filter>
 
     <div class="products-section__grid">
       @for (product of pagedProducts(); track product.id) {

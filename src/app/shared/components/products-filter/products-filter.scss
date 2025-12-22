@@ -3,18 +3,25 @@
 .products-filter {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 8px;
 
-    // az ng-content miatt kell, a stílusok innen érhetőek el
-    @include mat.checkbox-overrides((label-text-color: var(--mat-sys-secondary--fixed),
-            label-text-size: 1rem));
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
 
-    li {
-        list-style: none;
+        // az ng-content miatt kell, a stílusok innen érhetőek el
+        @include mat.checkbox-overrides((label-text-color: var(--mat-sys-secondary--fixed),
+                label-text-size: 1rem));
+
+        li {
+            list-style: none;
+        }
+
+        mat-slider {
+            width: 100%;
+            @include mat.slider-overrides((inactive-track-color: gray));
+        }
     }
 
-    mat-slider {
-        width: 100%;
-        @include mat.slider-overrides((inactive-track-color: gray));
-    }
 }
