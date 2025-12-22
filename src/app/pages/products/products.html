@@ -25,7 +25,7 @@
 
     <div class="products-section__grid">
       @for (product of facade.pagedProducts(); track product.id) {
-      <app-product-card [product]="product"></app-product-card>
+      <app-product-card [product]="product" (toggleFavorite)="facade.toggleFavorite($event)"></app-product-card>
       }
     </div>
   </div>

@@ -1,5 +1,5 @@
 // Anuglar
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 
 // Material
@@ -14,11 +14,15 @@ import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-card',
-  standalone: true,
   imports: [CurrencyPipe, NgOptimizedImage, MatCardModule, MatButtonModule, MatChipSet, MatChip, MatIcon],
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss'
 })
 export class ProductCard {
   readonly product = input.required<Product>();
+  readonly toggleFavorite = output<number>();
+
+  protected onToggleFavoruite() {
+    this.toggleFavorite.emit(this.product().id);
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ProductService } from './product.service';
-import { ProductFilter } from '../../shared/models/product.model';
+import { Product, ProductFilter, ProductType } from '../../shared/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +10,21 @@ export class ProductFacade {
   private readonly productService = inject(ProductService);
 
   // State
-  readonly products = toSignal(this.productService.getProducts(), { initialValue: [] });
+  readonly products = signal<Product[]>([]); 
   readonly filter = signal<ProductFilter>({
     onlyFavorites: false,
-    priceRange: { min: 0, max: 24 },
+    priceRange: { min: 0, max: 1000 },
     types: []
   });
   readonly searchQuery = signal<string>('');
   readonly pageIndex = signal(0);
-  readonly pageSize = signal(6);
+  readonly pageSize = signal(4);
+
+  constructor() {
+    this.productService.getProducts().subscribe(products => {
+      this.products.set(products);
+    });
+  }
 
   // Computed Selectors
   readonly filteredProducts = computed(() => {
@@ -29,7 +35,7 @@ export class ProductFacade {
     return products.filter(product => {
       const matchesFavorite = !filter.onlyFavorites || product.favourite;
       const matchesPrice = product.price >= filter.priceRange.min && product.price <= filter.priceRange.max;
-      const matchesType = filter.types.length === 0 || product.types.some(type => filter.types.includes(type));
+      const matchesType = filter.types.length === 0 || product.types.some((type: ProductType) => filter.types.includes(type));
       const matchesSearch = !query || product.name.toLowerCase().includes(query);
 
       return matchesFavorite && matchesPrice && matchesType && matchesSearch;
@@ -70,5 +76,13 @@ export class ProductFacade {
   setPage(pageIndex: number, pageSize: number) {
     this.pageIndex.set(pageIndex);
     this.pageSize.set(pageSize);
+  }
+
+  toggleFavorite(productId: number) {
+    this.products.update(products => 
+      products.map(p => 
+        p.id === productId ? { ...p, favourite: !p.favourite } : p
+      )
+    );
   }
 }
