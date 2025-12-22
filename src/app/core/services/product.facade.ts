@@ -1,5 +1,7 @@
+// Angular
 import { Injectable, inject, signal, computed } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+
+// App
 import { ProductService } from './product.service';
 import { Product, ProductFilter, ProductType } from '../../shared/models/product.model';
 
@@ -18,7 +20,7 @@ export class ProductFacade {
   });
   readonly searchQuery = signal<string>('');
   readonly pageIndex = signal(0);
-  readonly pageSize = signal(4);
+  readonly pageSize = signal(6);
 
   constructor() {
     this.productService.getProducts().subscribe(products => {

@@ -6,14 +6,16 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 
 // App
 import { FilterSection } from '../filter-section/filter-section';
 import { PRODUCT_TYPES, ProductFilter, ProductType } from '../../models/product.model';
+import { MatAnchor } from "@angular/material/button";
 
 @Component({
   selector: 'app-products-filter',
-  imports: [FilterSection, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatDividerModule],
+  imports: [FilterSection, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatDividerModule, MatAnchor, MatButtonModule],
   templateUrl: './products-filter.html',
   styleUrl: './products-filter.scss',
 })
@@ -64,5 +66,15 @@ export class ProductsFilter {
       priceRange: { min: this.minPrice(), max: this.maxPrice() },
       types: this.selectedTypes(),
     });
+  }
+
+  protected emitClearFilter(): void {
+    // Reset signals to defaults
+    this.minPrice.set(0);
+    this.maxPrice.set(24);
+    this.onlyFavorites.set(false);
+    this.selectedTypes.set([]);
+
+    this.emitFilterChange();
   }
 }

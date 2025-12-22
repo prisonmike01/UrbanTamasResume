@@ -3,7 +3,7 @@
 
     <div class="products-filter__body">
         <app-filter-section>
-            <mat-slide-toggle labelPosition="before" (change)="onFavoriteChange($event)">
+            <mat-slide-toggle [checked]="onlyFavorites()" labelPosition="before" (change)="onFavoriteChange($event)">
                 <p class="p3">Show only favorite</p>
             </mat-slide-toggle>
         </app-filter-section>
@@ -14,7 +14,7 @@
             <ul>
                 @for (type of productTypes; track type) {
                 <li>
-                    <mat-checkbox (change)="onTypeChange(type, $event)">{{ type }}</mat-checkbox>
+                    <mat-checkbox [checked]="selectedTypes().includes(type)" (change)="onTypeChange(type, $event)">{{ type }}</mat-checkbox>
                 </li>
                 }
             </ul>
@@ -31,5 +31,7 @@
                 <input [value]="maxPrice()" (input)="onMaxPriceChange($event)" matSliderEndThumb>
             </mat-slider>
         </app-filter-section>
+
+        <button matButton (click)="emitClearFilter()">Reset filter</button>
     </div>
 </div>

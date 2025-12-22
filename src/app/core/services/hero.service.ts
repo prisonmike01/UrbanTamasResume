@@ -1,6 +1,9 @@
+// Angular
 import { Injectable } from "@angular/core";
-import { HeroTab } from "../../shared/models/hero.model";
 import { of } from "rxjs";
+
+// App
+import { HeroTab } from "../../shared/models/hero.model";
 
 const MOCK_HERO_TABS: Array<HeroTab> = [
     {
