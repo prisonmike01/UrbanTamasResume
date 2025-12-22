@@ -20,12 +20,32 @@
     justify-content: end;
     padding: 12px;
   }
-}
 
-.products-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 1024px;
+
+    @include mixins.respond-to(md) {
+      flex-direction: row;
+    }
+  }
+
+  app-products-filter {
+    flex: 0 0 280px;
+    padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 24px;
+    column-gap: 18px;
+    padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
+
+    @include mixins.respond-to(md) {
+      justify-content: start;
+    }
+  }
 }

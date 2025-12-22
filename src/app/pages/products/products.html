@@ -10,7 +10,9 @@
   </div>
 
   <div class="products-section__body">
-    <div class="products-grid">
+    <app-products-filter></app-products-filter>
+
+    <div class="products-section__grid">
       @for (product of pagedProducts(); track product.id) {
       <app-product-card [product]="product"></app-product-card>
       }

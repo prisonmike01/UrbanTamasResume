@@ -1,13 +1,19 @@
+// Angular
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ProductService } from '../../core/services/product.service';
-import { ProductCard } from '../../shared/components/product-card/product-card';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
+
+// Material
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+
+// App
+import { ProductService } from '../../core/services/product.service';
+import { ProductCard, } from '../../shared/components/product-card/product-card';
+import { ProductsFilter } from '../../shared/components/products-filter/products-filter';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCard, MatPaginatorModule],
+  imports: [ProductCard, ProductsFilter, MatPaginatorModule],
   templateUrl: './products.html',
   styleUrl: './products.scss',
 })
@@ -19,7 +25,7 @@ export class Products {
   protected readonly title = toSignal(this.route.title);
 
   protected readonly pageIndex = signal(0);
-  protected readonly pageSize = signal(2);
+  protected readonly pageSize = signal(4);
   protected readonly paginatorLength = computed(() => this.products().length);
 
   protected readonly pagedProducts = computed(() => {

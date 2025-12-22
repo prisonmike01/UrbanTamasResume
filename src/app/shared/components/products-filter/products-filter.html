@@ -1,0 +1,26 @@
+<div class="products-filter">
+    <app-filter-section>
+        <mat-slide-toggle labelPosition="before">
+            <p class="p3">Show only favorite</p>
+        </mat-slide-toggle>
+    </app-filter-section>
+
+    <app-filter-section title="Filter by tags">
+        <!-- for -->
+        <ul>
+            <li>
+                <mat-checkbox>asd</mat-checkbox>
+            </li>
+        </ul>
+    </app-filter-section>
+
+    <app-filter-section title="Filter by price">
+        <div class="p3">
+            ${{ minPrice() }} - ${{ maxPrice() }}
+        </div>
+        <mat-slider [max]="maxRange" [step]="step">
+            <input [value]="minPrice()" (input)="onMinPriceChange($event)" matSliderStartThumb>
+            <input [value]="maxPrice()" (input)="onMaxPriceChange($event)" matSliderEndThumb>
+        </mat-slider>
+    </app-filter-section>
+</div>
