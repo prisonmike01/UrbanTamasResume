@@ -5,6 +5,7 @@ import { Component, output, signal } from '@angular/core';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDividerModule } from '@angular/material/divider';
 
 // App
 import { FilterSection } from '../filter-section/filter-section';
@@ -12,7 +13,7 @@ import { PRODUCT_TYPES, ProductFilter, ProductType } from '../../models/product.
 
 @Component({
   selector: 'app-products-filter',
-  imports: [FilterSection, MatCheckboxModule, MatSliderModule, MatSlideToggleModule],
+  imports: [FilterSection, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatDividerModule],
   templateUrl: './products-filter.html',
   styleUrl: './products-filter.scss',
 })
