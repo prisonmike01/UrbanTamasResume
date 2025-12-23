@@ -1,5 +1,5 @@
-// Anuglar
-import { Component, computed, inject, model, signal } from '@angular/core';
+// Angular
+import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 // Material
@@ -19,6 +19,8 @@ export class Home {
   private readonly heroService = inject(HeroService);
   protected readonly heroTabs = toSignal(this.heroService.getHeroTabs(), { initialValue: [] });
   
-  protected readonly selectedIndex = model<number>(0);
+  // Changed from model() to signal() to avoid Router Input Binding conflict
+  protected readonly selectedIndex = signal<number>(0);
+  
   readonly currentTab = computed(() => this.heroTabs()[this.selectedIndex()]);
 }

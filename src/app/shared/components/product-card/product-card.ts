@@ -10,11 +10,12 @@ import { MatIcon } from "@angular/material/icon";
 
 // App
 import { Product } from '../../models/product.model';
+import { RouterLink } from "@angular/router";
 
 
 @Component({
   selector: 'app-product-card',
-  imports: [CurrencyPipe, NgOptimizedImage, MatCardModule, MatButtonModule, MatChipSet, MatChip, MatIcon],
+  imports: [CurrencyPipe, NgOptimizedImage, MatCardModule, MatButtonModule, MatChipSet, MatChip, MatIcon, RouterLink],
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss'
 })

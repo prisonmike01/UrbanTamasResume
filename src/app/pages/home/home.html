@@ -1,6 +1,10 @@
 <main class="hero">
-    @if (currentTab()) {
-        <mat-tab-group headerPosition="below" [(selectedIndex)]="selectedIndex">
+    <!-- Check if tabs exist first to prevent render loop issue -->
+    @if (heroTabs().length > 0) {
+        <!-- Manual two-way binding for signal -->
+        <mat-tab-group headerPosition="below" 
+                       [selectedIndex]="selectedIndex()"
+                       (selectedIndexChange)="selectedIndex.set($event)">
             @for (tab of heroTabs(); track tab.id) {
                 <mat-tab [label]="tab.label">
                     <app-hero-banner [currentTab]="currentTab()"></app-hero-banner>

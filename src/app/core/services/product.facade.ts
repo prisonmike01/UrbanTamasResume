@@ -64,7 +64,7 @@ export class ProductFacade {
       .slice(0, 5);
   });
 
-  // Actions
+  // Products page Actions
   updateFilter(filter: ProductFilter) {
     this.filter.set(filter);
     this.pageIndex.set(0); 
