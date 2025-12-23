@@ -6,6 +6,13 @@
   width: 100%;
 }
 
+.product-details-page {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-container-dark);
+  gap: 8px;
+}
+
 .product-details {
   display: flex;
   flex-direction: column;
@@ -70,16 +77,5 @@
     align-items: normal;
     justify-content: center;
     padding: vars.$page-xl-vertical-padding vars.$page-xl-horizontal-padding;
-  }
-
-  &-loading-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-    gap: 1rem;
-    font-size: 1.2rem;
-    color: #666;
   }
 }

@@ -91,7 +91,6 @@ export class ProductFacade {
       )
     );
 
-    // create get by id?
     const product = this.getProductById(productId);
     const message = `${product?.name} ${(product?.favourite ? 'added to favorites' : 'removed from favorites')}`;
 
@@ -100,6 +99,16 @@ export class ProductFacade {
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     });
+  }
+
+  getRelatedProducts(product: Product): Product[] {
+    if (!product || !product.types) return [];
+
+    return this.products()
+      .filter(p => 
+        p.id !== product.id && 
+        p.types.some(type => product.types.includes(type))
+      );
   }
 
   private getProductById(productId: number) {

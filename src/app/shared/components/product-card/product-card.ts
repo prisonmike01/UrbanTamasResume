@@ -1,6 +1,7 @@
 // Anuglar
 import { Component, input, output } from '@angular/core';
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 // Material
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +11,6 @@ import { MatIcon } from "@angular/material/icon";
 
 // App
 import { Product } from '../../models/product.model';
-import { RouterLink } from "@angular/router";
 
 
 @Component({

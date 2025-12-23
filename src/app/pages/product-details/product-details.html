@@ -1,10 +1,13 @@
 @let product = this.product();
 
 @if (product) {
+<div class="product-details-page">
   <div class="product-details">
     <div class="product-details__image">
       <img [src]="product.imageUrl" [alt]="product.name" />
     </div>
+
+    <mat-divider vertical></mat-divider>
 
     <div class="product-details__info">
       <div class="product-details__info-header">
@@ -18,21 +21,21 @@
 
       <div class="product-details__info-tags">
         @for (type of product.types; track type) {
-          <mat-chip>{{ type }}</mat-chip>
+        <mat-chip>{{ type }}</mat-chip>
         }
       </div>
 
       <p class="p3">{{ product.description }}</p>
 
       <div class="product-details__info-actions">
-        <button mat-stroked-button routerLink="/products">Back to Products</button>
-        <button mat-flat-button color="primary">Add to Cart</button>
+        <button matButton="elevated" routerLink="/products">Back to Products</button>
+        <button matButton="filled" color="primary">Add to Cart</button>
       </div>
     </div>
   </div>
-} @else {
-  <div class="product-details__loading-state">
-    <p>Loading product details...</p>
-    <button mat-button routerLink="/products">Go Back</button>
+  <div class="related-products">
+    <app-related-products [products]="relatedProducts()"></app-related-products>
   </div>
+</div>
+
 }
