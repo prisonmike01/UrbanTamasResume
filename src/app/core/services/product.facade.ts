@@ -1,6 +1,9 @@
 // Angular
 import { Injectable, inject, signal, computed } from '@angular/core';
 
+// Material
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 // App
 import { ProductService } from './product.service';
 import { Product, ProductFilter, ProductType } from '../../shared/models/product.model';
@@ -10,9 +13,10 @@ import { Product, ProductFilter, ProductType } from '../../shared/models/product
 })
 export class ProductFacade {
   private readonly productService = inject(ProductService);
+  private readonly _snackBar = inject(MatSnackBar);
 
   // State
-  readonly products = signal<Product[]>([]); 
+  readonly products = signal<Product[]>([]);
   readonly filter = signal<ProductFilter>({
     onlyFavorites: false,
     priceRange: { min: 0, max: 1000 },
@@ -57,7 +61,7 @@ export class ProductFacade {
     const query = this.searchQuery().toLowerCase();
     const allProducts = this.products();
     if (!query) return [];
-    
+
     return allProducts
       .filter(p => p.name.toLowerCase().includes(query))
       .map(p => p.name)
@@ -67,7 +71,7 @@ export class ProductFacade {
   // Products page Actions
   updateFilter(filter: ProductFilter) {
     this.filter.set(filter);
-    this.pageIndex.set(0); 
+    this.pageIndex.set(0);
   }
 
   setSearchQuery(query: string) {
@@ -81,10 +85,24 @@ export class ProductFacade {
   }
 
   toggleFavorite(productId: number) {
-    this.products.update(products => 
-      products.map(p => 
+    this.products.update(products =>
+      products.map(p =>
         p.id === productId ? { ...p, favourite: !p.favourite } : p
       )
     );
+
+    // create get by id?
+    const product = this.getProductById(productId);
+    const message = `${product?.name} ${(product?.favourite ? 'added to favorites' : 'removed from favorites')}`;
+
+    this._snackBar.open(message, 'OK', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
+  }
+
+  private getProductById(productId: number) {
+    return this.products().find(p => p.id === productId);
   }
 }
