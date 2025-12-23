@@ -15,7 +15,7 @@ import { HeroService } from '../../core/services/hero.service';
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class Home {
+export default class Home {
   private readonly heroService = inject(HeroService);
   protected readonly heroTabs = toSignal(this.heroService.getHeroTabs(), { initialValue: [] });
   

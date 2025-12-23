@@ -35,7 +35,7 @@ import { ProductFilter } from '../../shared/models/product.model';
   templateUrl: './products.html',
   styleUrl: './products.scss',
 })
-export class Products {
+export default class Products {
   protected readonly facade = inject(ProductFacade);
   private readonly route = inject(ActivatedRoute);
   private readonly _snackBar = inject(MatSnackBar);

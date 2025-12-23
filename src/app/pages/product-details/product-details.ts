@@ -13,7 +13,7 @@ import { ProductFacade } from '../../core/services/product.facade';
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
-export class ProductDetails {
+export default class ProductDetails {
   protected readonly facade = inject(ProductFacade);
 
   // withComponentInputBinding assign
