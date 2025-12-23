@@ -19,7 +19,7 @@ export class ProductFacade {
   readonly products = signal<Product[]>([]);
   readonly filter = signal<ProductFilter>({
     onlyFavorites: false,
-    priceRange: { min: 0, max: 1000 },
+    priceRange: { min: 0, max: 24 },
     types: []
   });
   readonly searchQuery = signal<string>('');
