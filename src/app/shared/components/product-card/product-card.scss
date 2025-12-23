@@ -1,3 +1,5 @@
+@use '../../../../styles/abstracts/mixins' as mixins;
+
 .product-card {
   position: relative;
   display: flex;
@@ -10,20 +12,16 @@
     flex-direction: column;
 
     [matIconButton] {
-      color: var(--mat-sys-error);
       border: none;
       position: absolute;
       top: 6px;
       left: 6px;
       right: 6px;
       z-index: 2;
-    }
 
-    .favoriteProduct {
-      color: var(--mat-sys-error-container);
+      @include mixins.favorite-icon-style;
     }
   }
-
 
   img[mat-card-image] {
     object-fit: cover;

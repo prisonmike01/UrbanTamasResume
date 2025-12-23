@@ -1,1 +1,36 @@
-<p>product-details works!</p>
+@if (product(); as product) {
+  <div class="product-details">
+    <div class="product-details__image">
+      <img [src]="product.imageUrl" [alt]="product.name" />
+    </div>
+
+    <div class="product-details__info">
+      <div class="product-details__info-header">
+        <h3>{{ product.name }}</h3>
+        <button matIconButton [class.favoriteProduct]="product.favourite" (click)="toggleFavorite(product.id)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div>
+
+      <p class="p2">{{ product.price | currency }}</p>
+
+      <div class="product-details__info-tags">
+        @for (type of product.types; track type) {
+          <mat-chip>{{ type }}</mat-chip>
+        }
+      </div>
+
+      <p class="p3">{{ product.description }}</p>
+
+      <div class="product-details__info-actions">
+        <button mat-stroked-button routerLink="/products">Back to Products</button>
+        <button mat-flat-button color="primary">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="product-details__loading-state">
+    <p>Loading product details...</p>
+    <button mat-button routerLink="/products">Go Back</button>
+  </div>
+}

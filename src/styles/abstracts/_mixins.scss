@@ -16,3 +16,11 @@
         }
     }
 }
+
+@mixin favorite-icon-style {
+    color: var(--mat-sys-error);
+
+    &.favoriteProduct {
+        color: var(--mat-sys-error-container);
+    }
+}
