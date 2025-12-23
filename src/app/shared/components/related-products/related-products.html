@@ -1,0 +1,13 @@
+<div class="related-products">
+  <div class="related-products__title">
+    <h6>Related Products</h6>
+  </div>
+
+  <div class="related-products__grid">
+    <div class="related-products__grid-body">
+      @for (product of products(); track product.id) {
+      <app-related-product-card [product]="product"></app-related-product-card>
+      }
+    </div>
+  </div>
+</div>

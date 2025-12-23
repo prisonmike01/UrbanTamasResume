@@ -1,0 +1,37 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins';
+
+
+.related-products {
+  padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
+
+  &__title {
+    text-align: center;
+    padding: 16px 16px;
+
+  }
+
+  @include mixins.respond-to(md) {
+    padding: vars.$page-xl-vertical-padding vars.$page-xl-horizontal-padding;
+
+  }
+
+  &__grid {
+    display: flex;
+    justify-content: center;
+
+    @include mixins.respond-to(md) {
+      justify-content: center;
+      justify-content: space-evenly;
+
+    }
+  }
+
+  &__grid-body {
+    display: flex;
+    gap: 12px;
+    border-radius: 16px;
+    padding: 12px;
+    background-color: var(--mat-sys-on-secondary);
+  }
+}
