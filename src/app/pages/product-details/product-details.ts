@@ -32,8 +32,4 @@ export default class ProductDetails {
     const products = this.facade.products();
     return products.find(p => p.id === Number(this.id()));
   });
-
-  protected toggleFavorite(id: number) {
-    this.facade.toggleFavorite(id);
-  }
 }
