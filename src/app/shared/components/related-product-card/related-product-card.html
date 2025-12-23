@@ -1,0 +1,16 @@
+<mat-card class="related-product-card" matRipple [routerLink]="['../', product().id]">
+  <div class="related-product-card__header">   
+    <img mat-card-image [ngSrc]="product().imageUrl" [alt]="product().name" width="300" height="200">
+  </div>
+
+  <mat-card-header>
+    <mat-card-title>
+      {{ product().name }}
+      <mat-chip-set aria-label="item type">
+        @for (item of product().types; track item) {
+        <mat-chip>{{ item }}</mat-chip>
+        }
+      </mat-chip-set>
+    </mat-card-title>
+  </mat-card-header>
+</mat-card>

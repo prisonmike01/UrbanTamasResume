@@ -1,0 +1,11 @@
+.related-product-card {
+    width: 240px;
+
+    &__header {     
+
+        img[mat-card-image] {
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+}
