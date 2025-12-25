@@ -1,19 +1,17 @@
 // Angular
 import { Injectable, inject, signal, computed } from '@angular/core';
 
-// Material
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 // App
 import { ProductService } from './product.service';
 import { Product, ProductFilter, ProductType } from '../../shared/models/product.model';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductFacade {
   private readonly productService = inject(ProductService);
-  private readonly _snackBar = inject(MatSnackBar);
+  private readonly notificationService = inject(NotificationService);
 
   // State
   readonly products = signal<Product[]>([]);
@@ -94,11 +92,7 @@ export class ProductFacade {
     const product = this.getProductById(productId);
     const message = `${product?.name} ${(product?.favourite ? 'added to favorites' : 'removed from favorites')}`;
 
-    this._snackBar.open(message, 'OK', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    });
+    this.notificationService.showSuccess(message);
   }
 
   getRelatedProducts(product: Product): Product[] {
