@@ -1,5 +1,6 @@
 // Angular
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 // App
 import { CartItem } from '../../shared/models/cart.model';
@@ -11,6 +12,7 @@ import { NotificationService } from './notification.service';
 })
 export class CartService {
   private readonly notificationService = inject(NotificationService);
+  private readonly router = inject(Router);
   
   readonly items = signal<CartItem[]>(this.loadCart());
 
@@ -30,11 +32,11 @@ export class CartService {
 
   addItem(product: Product): void {
     const isNewItem = this.addToCart(product);
-    if (isNewItem) {
-      this.notificationService.showSuccess(`${product.name} added to cart!`);
-    } else {
-      this.notificationService.showSuccess(`${product.name} quantity updated!`);
-    }
+    const message = isNewItem ? `${product.name} added to cart!` : `${product.name} quantity updated!`;
+
+    this.notificationService.showSuccess(message, 'View Cart', () => {
+      this.router.navigate(['/cart']);
+    });
   }
 
   private addToCart(product: Product): boolean {

@@ -11,13 +11,19 @@ export class NotificationService {
     private readonly _snackBar = inject(MatSnackBar);
     private readonly defaultDuration = 3000;
 
-    showSuccess(message: string) {
-        this._snackBar.open(message, 'OK', {
+    showSuccess(message: string, action: string = 'OK', actionCallback?: () => void) {
+        const snackBarRef = this._snackBar.open(message, action, {
             duration: this.defaultDuration,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
             panelClass: ['success-snackbar']
         });
+
+        if (actionCallback) {
+            snackBarRef.onAction().subscribe(() => {
+                actionCallback();
+            });
+        }
     }
 
     showError(message: string) {
