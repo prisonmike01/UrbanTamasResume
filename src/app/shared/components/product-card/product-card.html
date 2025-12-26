@@ -1,6 +1,6 @@
 <mat-card class="product-card" appearance="outlined">
   <div class="product-card__header">
-    <button matIconButton [class.favoriteProduct]="product().favourite" (click)="onToggleFavoruite()">
+    <button matIconButton [class.favoriteProduct]="product().favourite" (click)="onToggleFavorite()">
       <mat-icon>favorite</mat-icon>
     </button>    
     <img mat-card-image [ngSrc]="product().imageUrl" [alt]="product().name" width="300" height="200">
@@ -22,7 +22,7 @@
     <p>{{ product().description }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button matButton="tonal">
+    <button matButton="tonal" (click)="cartService.addItem(product())">
       <mat-icon>add_shopping_cart</mat-icon>Add to Cart
     </button>
     <button [routerLink]="[product().id]" matButton>

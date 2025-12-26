@@ -1,5 +1,5 @@
-// Anuglar
-import { Component, input, output } from '@angular/core';
+// Angular
+import { Component, inject, input, output } from '@angular/core';
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from "@angular/router";
 
@@ -11,6 +11,7 @@ import { MatIcon } from "@angular/material/icon";
 
 // App
 import { Product } from '../../models/product.model';
+import { CartService } from '../../../core/services/cart.service';
 
 
 @Component({
@@ -20,10 +21,12 @@ import { Product } from '../../models/product.model';
   styleUrl: './product-card.scss'
 })
 export class ProductCard {
+  protected readonly cartService = inject(CartService);
+
   readonly product = input.required<Product>();
   readonly toggleFavorite = output<number>();
 
-  protected onToggleFavoruite() {
+  protected onToggleFavorite() {
     this.toggleFavorite.emit(this.product().id);
   }
 }

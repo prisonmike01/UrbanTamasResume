@@ -29,7 +29,7 @@
 
       <div class="product-details__info-actions">
         <button matButton="elevated" routerLink="/products">Back to Products</button>
-        <button matButton="filled" color="primary">Add to Cart</button>
+        <button matButton="filled" color="primary" (click)="cartService.addItem(product)">Add to Cart</button>
       </div>
     </div>
   </div>

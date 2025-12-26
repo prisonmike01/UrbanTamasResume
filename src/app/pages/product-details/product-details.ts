@@ -11,7 +11,9 @@ import { MatDividerModule } from '@angular/material/divider';
 
 // App
 import { ProductFacade } from '../../core/services/product.facade';
+import { CartService } from '../../core/services/cart.service';
 import { RelatedProducts } from '../../shared/components/related-products/related-products';
+import { Product } from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-details',
@@ -23,12 +25,13 @@ import { RelatedProducts } from '../../shared/components/related-products/relate
     MatChipsModule,
     MatDividerModule,
     RelatedProducts
-],
+  ],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
 export default class ProductDetails {
   protected readonly facade = inject(ProductFacade);
+  protected readonly cartService = inject(CartService);
 
   readonly id = input.required<string>();
 
