@@ -3,12 +3,12 @@
     <span class="example-spacer"></span>
     <nav class="main-header__buttons">
         <button routerLink="/products" matButton>Products</button>
-        <button routerLink="/cart" matIconButton >            
+        <button routerLink="/cart" matIconButton [matBadge]="cartService.count()" [matBadgeHidden]="cartService.count() === 0" matBadgeColor="warn">            
             <mat-icon>shopping_cart</mat-icon>
         </button>
         <button routerLink="/register" matButton="filled">Sign up</button>
     </nav>
-    <button mat-icon-button class="main-header__mobile-menu-btn" (click)="onMenuToggle()">
+    <button matIconButton class="main-header__mobile-menu-btn" (click)="onMenuToggle()">
         <mat-icon>menu</mat-icon>
     </button>
 </mat-toolbar>
