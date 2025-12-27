@@ -1,0 +1,28 @@
+@let product = this.product().product;
+@let quantity = this.product().quantity;
+
+<mat-card class="cart-item">
+    <img mat-card-image [src]="product.imageUrl" [alt]="product.name">
+    <div class="cart-item__details">
+        <div class="cart-item__header">
+            <p class="p3">{{ product.name }}</p>
+            <p class="price">{{ product.price | currency }}</p>
+        </div>
+
+        <div class="cart-item__actions">
+            <div class="quantity-controls">
+                <button matIconButton (click)="cartService.updateQuantity(product.id, quantity - 1)"
+                    [disabled]="quantity <= 1">
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <span>{{ quantity }}</span>
+                <button matIconButton (click)="cartService.updateQuantity(product.id, quantity + 1)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <button matIconButton color="warn" (click)="cartService.removeFromCart(product.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-card>

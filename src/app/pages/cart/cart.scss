@@ -25,11 +25,13 @@
   &__body {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3em;
     padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
 
-    @include mixins.respond-to(md) {
+    @include mixins.respond-to(lg) {
       display: grid;
+      align-items: start;
       grid-template-columns: 1fr 1fr;
       justify-items: center;
       padding: vars.$page-xl-vertical-padding vars.$page-xl-horizontal-padding;

@@ -1,0 +1,50 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins';
+
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @include mixins.respond-to(sm) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+
+            span {
+                min-width: 30px;
+                text-align: center;
+                font-weight: 500;
+            }
+        }
+    }
+}
