@@ -31,6 +31,11 @@ export const routes: Routes = [
     title: 'Register',
     loadComponent: () => import('./pages/register/register')
   },
+  {
+    path: 'checkout-success',
+    title: 'Order Confirmed',
+    loadComponent: () => import('./pages/checkout-success/checkout-success')
+  },
   { 
     path: '**',
     title: 'Not Found',
