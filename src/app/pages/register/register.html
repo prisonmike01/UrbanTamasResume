@@ -1,1 +1,83 @@
-<p>register works!</p>
+<div class="register-section page-column-layout">
+  <div class="section__title">
+    <h3>{{ title() }}</h3>
+  </div>
+
+  <div class="register-section__body">
+    <mat-card class="register-card">
+      <mat-card-content>
+        <form (submit)="onRegister($event)" class="register-form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" [field]="registerForm.name" placeholder="John Doe">
+            <mat-icon matPrefix>person</mat-icon>
+
+            @let name = registerForm.name();
+            @if (name.touched()) {
+            <mat-error>
+              @for (error of name.errors(); track error) {
+              <span>{{ error.message }}</span>
+              }
+            </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [field]="registerForm.email" placeholder="example@mail.com">
+            <mat-icon matPrefix>email</mat-icon>
+
+            @let email = registerForm.email();
+            @if (email.touched() && !email.valid()) {
+            <mat-error>
+              @for(error of email.errors(); track error.kind) {
+              <span>{{ error.message }}</span>
+              }
+            </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [field]="registerForm.password" placeholder="Min. 6 characters">
+            <mat-icon matPrefix>lock</mat-icon>
+
+
+            @let password = registerForm.password();
+            @if (password.touched()) {
+            <mat-error>
+              @for(error of password.errors(); track error.kind) {
+              <span>{{ error.message }}</span>
+              }
+            </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" [field]="registerForm.confirmPassword" placeholder="Re-enter password">
+            <mat-icon matPrefix>lock_reset</mat-icon>
+            
+            @let confirmPassword = registerForm.confirmPassword();
+            @if (confirmPassword.touched()) {
+            <mat-error>
+              @for(error of confirmPassword.errors(); track error.kind) {
+              <span>{{ error.message }} <br></span>
+              }
+            </mat-error>
+            }
+          </mat-form-field>
+
+          <button mat-flat-button color="primary" type="submit" [disabled]="!registerForm().valid()">
+            REGISTER
+          </button>
+        </form>
+      </mat-card-content>
+
+      <mat-card-footer class="register-footer">
+        <p>Already have an account? <a routerLink="/login" class="priceTotal">Login here</a></p>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

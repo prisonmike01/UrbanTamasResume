@@ -1,0 +1,54 @@
+@use '../../../styles/abstracts/mixins';
+
+:host {
+  @include mixins.full-width();
+}
+
+.register-section {
+  margin-bottom: 5rem;
+
+  &__body {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.register-card {
+  padding: 16px;
+  width: 100%;
+  max-width: 400px;
+
+  mat-card-content {
+    padding-top: 16px;
+  }
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  mat-form-field.mat-form-field-invalid {
+    margin-bottom: 24px;
+  }
+
+  button {
+    margin-top: 12px;
+    padding: 24px;
+    font-weight: bold;
+  }
+}
+
+.register-footer {
+  padding: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
