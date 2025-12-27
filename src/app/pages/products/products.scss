@@ -3,7 +3,7 @@
 @use '@angular/material' as mat;
 
 :host {
-  @include mixins.full-width();
+  @include mixins.page-host-flex();  
 }
 
 .products-section {

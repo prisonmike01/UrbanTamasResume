@@ -1,5 +1,8 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins';
+
 :host {
-  width: 100%;
+  @include mixins.page-host-flex();
 }
 
 .success-container {

@@ -2,11 +2,10 @@
 @use '../../../styles/abstracts/mixins';
 
 :host {
-  @include mixins.full-width();
+  @include mixins.page-host-flex();
 }
 
 .cart-section {
-  height: 100%;
 
   &__title {
     padding: 16px 12px 8px;

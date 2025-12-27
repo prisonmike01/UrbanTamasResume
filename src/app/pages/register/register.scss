@@ -1,11 +1,11 @@
 @use '../../../styles/abstracts/mixins';
 
 :host {
-  @include mixins.full-width();
+  @include mixins.page-host-flex();
 }
 
 .register-section {
-  margin-bottom: 5rem;
+  padding-bottom: 5rem;
 
   &__body {
     display: flex;

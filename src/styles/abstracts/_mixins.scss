@@ -25,6 +25,8 @@
     }
 }
 
-@mixin full-width {
-  width: 100%;
+@mixin page-host-flex {
+    width: 100%;
+    flex: 1;
+    background-color: var(--secondary-container-dark);
 }

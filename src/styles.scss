@@ -9,6 +9,7 @@
 @use './styles/base/typography';
 @use './styles/components/titles';
 @use './styles/components/mat-icons';
+@use './styles/components/snackbar';
 @use './styles/layouts/pages';
 @include mat.core();
 
@@ -59,16 +60,4 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.success-snackbar {
-  --mdc-snackbar-container-color: var(--mat-sys-primary);
-  --mdc-snackbar-label-text-color: var(--mat-sys-on-primary);
-  --mat-snack-bar-button-color: var(--mat-sys-on-primary);
-}
-
-.error-snackbar {
-  --mdc-snackbar-container-color: var(--mat-sys-error);
-  --mdc-snackbar-label-text-color: var(--mat-sys-on-error);
-  --mat-snack-bar-button-color: var(--mat-sys-on-error);
 }

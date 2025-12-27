@@ -51,3 +51,16 @@ This project is created as a **portfolio project** to demonstrate best practices
 - Material Design 3 theming
 - Responsive, mobile-first layout
 - Form handling with validation feedback
+
+---
+
+
+![Home page](images/home.png)
+![Prodcut page](images/products.png)
+![Prodcut details page](images/product-details.png)
+![Cart page](images/cart.png)
+![Empty cart](images/empty_cart.png)
+![Checkout page](images/checkout.png)
+![Login page](images/login.png)
+![Register page](images/register.png)
+

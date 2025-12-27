@@ -2,7 +2,7 @@
 @use '../../../styles/abstracts/mixins';
 
 :host {
-  @include mixins.full-width();
+  @include mixins.page-host-flex();
 }
 
 .login-section {
