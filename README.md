@@ -1,59 +1,53 @@
-# ResumeShop
+# ResumeShop 🚀
+This project is created as a **portfolio project** to demonstrate best practices, architectural patterns, and up-to-date Angular features.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+---
 
-## Development server
+## Overview 🧩
 
-To start a local development server, run:
+**Author:** Tamás Urbán  
+**Framework:** Angular 21  
+**UI Library:** Angular Material (Material Design 3)
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Project Goals 🎯
 
-## Code scaffolding
+- Apply modern Angular best practices
+- Create a scalable and well-structured codebase
+- Demonstrate signal-based state management
+- Provide a responsive, mobile-first user interface
+- Showcase Material Design 3 integration
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Key Features ✨
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Architecture & Structure
+- Standalone components with lifecycle hooks
+- SCSS architecture using the **7–1 pattern**
+- Clear separation of concerns (core, shared, features)
 
-```bash
-ng generate --help
-```
+### State Management
+- `signal()`, `computed()`, `effect()` for reactive state
+- Signal-based forms
+- RxJS interoperability using `toSignal()`
 
-## Building
+### Template Syntax
+- New Angular control flow:
+  - `@if`
+  - `@for`
+  - `@empty`
 
-To build the project run:
+### Routing
+- Guarded routes
+- Route resolvers
+- Router events handling
+- Lazy-loaded feature modules
+- Deferred loading using `@defer`
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### UI & UX
+- Angular Material components
+- Material Design 3 theming
+- Responsive, mobile-first layout
+- Form handling with validation feedback
