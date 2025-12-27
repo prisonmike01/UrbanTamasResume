@@ -79,3 +79,10 @@
     padding: vars.$page-xl-vertical-padding vars.$page-xl-horizontal-padding;
   }
 }
+
+.related-products {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 3rem;
+}

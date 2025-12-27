@@ -5,10 +5,10 @@
   @include mixins.full-width();
 }
 
-.login-section { 
+.login-section {
   height: 100%;
 
-  &__body { 
+  &__body {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
@@ -18,16 +18,17 @@
 
 .login-card {
   padding: 16px;
-  width: 320px;
-  
+  max-width: 400px;
+  width: 100%;
+
   mat-card-header {
     margin-bottom: 24px;
     justify-content: center;
     text-align: center;
-    
+
     mat-card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
   }
 }
@@ -51,7 +52,7 @@
 
   a {
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
     }

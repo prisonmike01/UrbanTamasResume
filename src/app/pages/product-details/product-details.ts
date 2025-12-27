@@ -8,12 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 // App
 import { ProductFacade } from '../../core/services/product.facade';
 import { CartService } from '../../core/services/cart.service';
 import { RelatedProducts } from '../../shared/components/related-products/related-products';
-import { Product } from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-product-details',
@@ -24,7 +24,8 @@ import { Product } from '../../shared/models/product.model';
     MatIconModule,
     MatChipsModule,
     MatDividerModule,
-    RelatedProducts
+    RelatedProducts,
+    MatProgressSpinner
   ],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',

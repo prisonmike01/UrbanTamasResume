@@ -34,7 +34,15 @@
     </div>
   </div>
   <div class="related-products">
-    <app-related-products [products]="relatedProducts()"></app-related-products>
+    @defer (on viewport; prefetch on idle) {
+      <app-related-products [products]="relatedProducts()"></app-related-products>
+    } @placeholder {
+      <div>Loading is starting soon...</div>
+    } @loading(minimum 2000ms) {
+        <mat-spinner diameter="64"></mat-spinner>
+    } @error {
+      <div>Something went wrong</div>
+    }
   </div>
 </div>
 

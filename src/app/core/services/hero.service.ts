@@ -42,8 +42,8 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
                 'signal(), computed(), effect() and input(), output() bindings',
                 '@if, @for, @empty structural directives',
                 'dependency injection with inject(), RxJS interop with toSignal()',
-                '!!! signal forms',
-                'guarded routes, !!! router events, resolvers, http interceptors',
+                'signal forms',
+                'guarded routes, router events, resolvers',
                 'usage of lazy loading and @defer',
             ],
         }
