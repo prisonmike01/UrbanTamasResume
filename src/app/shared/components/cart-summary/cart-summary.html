@@ -17,6 +17,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions>
-        <button matButton="filled" class="checkout-btn">Proceed to Checkout</button>
+        <button matButton="elevated" class="checkout-btn" (click)="onClearCart()">Clear cart</button>
+        <button matButton="filled" class="checkout-btn" (click)="onProceedToCheckout()">Proceed to Checkout</button>
     </mat-card-actions>
 </mat-card>

@@ -19,7 +19,7 @@
       </div>
 
       <div>
-        <app-cart-summary></app-cart-summary>
+        <app-cart-summary (proceedToCheckout)="onCheckout()" (clearCart)="onClearCart()"></app-cart-summary>
       </div>
     </div>
     }

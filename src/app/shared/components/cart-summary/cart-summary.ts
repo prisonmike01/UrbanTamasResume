@@ -1,5 +1,5 @@
 // Angular
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 
 // Material
@@ -19,5 +19,14 @@ import { CartService } from '../../../core/services/cart.service';
 })
 export class CartSummary {
   protected readonly cartService = inject(CartService);
+  readonly proceedToCheckout = output<void>();
+  readonly clearCart = output<void>();
 
+  protected onProceedToCheckout(): void { 
+    this.proceedToCheckout.emit();
+  }
+
+  protected onClearCart(): void { 
+    this.clearCart.emit();
+  }
 }
