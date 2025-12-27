@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,7 @@ export const routes: Routes = [
   {
     path: 'checkout-success',
     title: 'Order Confirmed',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/checkout-success/checkout-success')
   },
   { 
