@@ -13,7 +13,7 @@ import { NotificationService } from './notification.service';
 export class CartService {
   private readonly notificationService = inject(NotificationService);
   private readonly router = inject(Router);
-  
+
   readonly items = signal<CartItem[]>(this.loadCart());
 
   readonly count = computed(() => this.items().length);
@@ -23,6 +23,8 @@ export class CartService {
   readonly totalPrice = computed(() =>
     this.items().reduce((acc, item) => acc + (item.product.price * item.quantity), 0)
   );
+
+  readonly isCartEmpty = computed(() => this.count() === 0);
 
   constructor() {
     effect(() => {

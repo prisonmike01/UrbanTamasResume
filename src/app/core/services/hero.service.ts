@@ -21,14 +21,12 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
         label: 'About the project',
         heroData: {
             title: 'About the project',
-            subtitle: 'Objectives',
+            subtitle: 'Main objectives',
             author: '',
             data: [
-                'apply best practices',
+                'apply modern best practices',
                 'create a structured codebase',
-                'demonstrate component-based architecture',
-                'ensure unidirectional data flow',
-                'provide a responsive (mobile-first) interface',
+                'provide a mobile-first interface',
             ],
         }
     },
@@ -36,7 +34,7 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
         id: 3,
         label: 'Details',
         heroData: {
-            title: 'Key features ',
+            title: 'Key features',
             subtitle: 'Used technologies',
             author: '',
             data: [

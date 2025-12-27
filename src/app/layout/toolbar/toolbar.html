@@ -3,7 +3,8 @@
     <span class="example-spacer"></span>
     <nav class="main-header__buttons">
         <button routerLink="/products" matButton>Products</button>
-        <button routerLink="/cart" matIconButton [matBadge]="cartService.count()" [matBadgeHidden]="cartService.count() === 0" matBadgeColor="warn">            
+        <button routerLink="/cart" matIconButton [matBadge]="cartService.count()"
+            [matBadgeHidden]="cartService.isCartEmpty()" matBadgeColor="warn" matTooltip="Cart is empty" [matTooltipDisabled]="!cartService.isCartEmpty()">
             <mat-icon>shopping_cart</mat-icon>
         </button>
         <button routerLink="/register" matButton="filled">Sign up</button>
