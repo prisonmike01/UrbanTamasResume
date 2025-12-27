@@ -1,0 +1,22 @@
+<mat-card class="cart-summary">
+    <mat-card-title>Order Summary</mat-card-title>
+
+    <mat-card-content>
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <span>{{ cartService.totalCount() }} items</span>
+        </div>
+        <div class="summary-row">
+            <span>Shipping</span>
+            <span>Free</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="summary-row total">
+            <span>Total</span>
+            <span class="priceTotal">{{ cartService.totalPrice() | currency }}</span>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button matButton="filled" class="checkout-btn">Proceed to Checkout</button>
+    </mat-card-actions>
+</mat-card>
