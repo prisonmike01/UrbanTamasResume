@@ -22,15 +22,15 @@ $toolbar-height: 64px;
     user-select: none;
   }
 
-  &__buttons {
-    display: none;
-    gap: 12px;
+    &__buttons {
+        display: none;
+        gap: 8px;
+        align-items: center;
 
-    @include mixins.respond-to(sm) {
-      display: flex;
-      align-items: center;
+        @include mixins.respond-to(md) {
+            display: flex;
+        }
     }
-  }
 
   &__mobile-menu-btn {
     display: block;

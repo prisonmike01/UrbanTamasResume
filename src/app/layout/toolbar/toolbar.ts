@@ -11,6 +11,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 // App
 import { CartService } from '../../core/services/cart.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -25,6 +26,7 @@ import { CartService } from '../../core/services/cart.service';
 })
 export class Toolbar {
   protected readonly cartService = inject(CartService);
+  protected readonly authService = inject(AuthService);
 
   readonly toolbarTitle = input.required<string>();
   readonly menuToggled = output<void>();

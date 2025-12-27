@@ -7,7 +7,14 @@
             [matBadgeHidden]="cartService.isCartEmpty()" matBadgeColor="warn" matTooltip="Cart is empty" [matTooltipDisabled]="!cartService.isCartEmpty()">
             <mat-icon>shopping_cart</mat-icon>
         </button>
-        <button routerLink="/register" matButton="filled">Sign up</button>
+
+        @if (authService.isLoggedIn()) {
+            <span class="nav-text user-greeting">Hi, {{ authService.currentUser()?.name }}</span>
+            <button (click)="authService.logout()" matButton>Logout</button>
+        } @else {
+            <button routerLink="/login" matButton>Login</button>
+            <button routerLink="/register" matButton="filled">Sign up</button>
+        }
     </nav>
     <button matIconButton class="main-header__mobile-menu-btn" (click)="onMenuToggle()">
         <mat-icon>menu</mat-icon>
