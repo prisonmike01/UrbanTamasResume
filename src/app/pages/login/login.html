@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="login-section page-column-layout">
+  <div class="section__title">
+    <h3>{{ title() }}</h3>
+  </div>
+
+  <div class="login-section__body">
+    <mat-card class="login-card">
+      <mat-card-content>
+        <form (submit)="authenticate($event)" class="login-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [field]="loginForm.email" placeholder="example@mail.com">
+            <mat-icon matPrefix>email</mat-icon>
+
+            @let email = loginForm.email();
+            @if (email.touched() && !email.valid()) {
+            <mat-error>
+              @for(error of email.errors(); track error.kind) {
+              <span>{{ error.message }}</span>
+              }
+            </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [field]="loginForm.password" placeholder="Min. 6 characters">
+            <mat-icon matPrefix>lock</mat-icon>
+
+            @let password = loginForm.password();
+            @if (password.touched() && !password.valid()) {
+            <mat-error>
+              @for(error of password.errors(); track error.kind) {
+              <span>{{ error.message }}</span>
+              }
+            </mat-error>
+            }
+          </mat-form-field>
+
+          <button mat-flat-button color="primary" type="submit" [disabled]="!loginForm().valid()">
+            LOGIN
+          </button>
+        </form>
+      </mat-card-content>
+
+      <mat-card-footer class="login-footer">
+        <p>Don't have an account? <a routerLink="/register" class="priceTotal">Register here</a></p>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

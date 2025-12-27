@@ -14,7 +14,8 @@ export class AuthService {
 
   constructor() {}
 
-  login(email: string, password: string): boolean {
+  async login(email: string, password: string) {
+
     // Mock authentication logic
     if (email && password && password.length >= 6) {
       const user: User = {
