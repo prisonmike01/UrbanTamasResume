@@ -1,3 +1,6 @@
+@use '../styles/abstracts/variables' as vars;
+@use '../styles/abstracts/mixins';
+
 :host {
     display: flex;
     flex-direction: column;
@@ -12,5 +15,23 @@
 .sidenav-content {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;    
- }
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    max-width: vars.$page-max-width;
+    margin: 0 auto;
+
+    top: 64px;
+}

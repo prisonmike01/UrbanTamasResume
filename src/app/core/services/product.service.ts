@@ -1,7 +1,7 @@
 // Angular
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, delay } from 'rxjs';
 
 // App
 import { Product } from '../../shared/models/product.model';
@@ -10,10 +10,12 @@ import { Product } from '../../shared/models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private http = inject(HttpClient);
-  private productsUrl = 'api/products.json';
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'api/products.json';
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl);
+    return this.http.get<Product[]>(this.apiUrl).pipe(
+      delay(1500) // Simulate network latency
+    );
   }
 }

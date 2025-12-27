@@ -35,7 +35,7 @@ $toolbar-height: 64px;
   &__mobile-menu-btn {
     display: block;
 
-    @include mixins.respond-to(sm) { 
+    @include mixins.respond-to(md) { 
       display: none;
     }
   }

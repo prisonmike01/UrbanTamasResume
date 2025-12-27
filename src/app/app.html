@@ -12,6 +12,10 @@
     <mat-sidenav-content class="sidenav-content">
         <app-toolbar [toolbarTitle]="title()" (menuToggled)="sidenav.toggle()"></app-toolbar>
 
+        @if (loadingService.isLoading()) {
+            <mat-progress-bar mode="indeterminate" color="accent" class="loading-bar"></mat-progress-bar>
+        }
+
         <div class="content">
             <router-outlet></router-outlet>
         </div>
