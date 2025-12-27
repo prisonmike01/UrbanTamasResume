@@ -1,7 +1,8 @@
 // Angular
 import { Component, inject } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 // Material
 import { MatButton } from '@angular/material/button';
@@ -29,6 +30,11 @@ export default class Cart {
   protected readonly cartService = inject(CartService);
   protected readonly notificationService = inject(NotificationService);
   protected readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+
+  protected readonly title = toSignal(this.route.title);
+
 
   onClearCart(): void {
     this.notificationService.confirm('Confirm Clear cart', 'Are you sure you want to clear the cart?')

@@ -24,3 +24,7 @@
         color: var(--mat-sys-error-container);
     }
 }
+
+@mixin full-width {
+  width: 100%;
+}

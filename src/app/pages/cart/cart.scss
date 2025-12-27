@@ -2,20 +2,11 @@
 @use '../../../styles/abstracts/mixins';
 
 :host {
-  width: 100%;
+  @include mixins.full-width();
 }
 
 .cart-section {
-  display: flex;
-  flex-direction: column;
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--secondary-container-dark);
-    flex: 1 1 1024px;
-
-  }
+  height: 100%;
 
   &__title {
     padding: 16px 12px 8px;
@@ -25,6 +16,7 @@
   &__body {
     display: flex;
     flex-direction: column;
+    flex: 1 1 1024px;
     align-items: center;
     gap: 3em;
     padding: vars.$page-sm-vertical-padding vars.$page-sm-horizontal-padding;
@@ -49,16 +41,12 @@
 .empty-cart {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 0;
-  gap: 1rem;
-  text-align: center;
 
-  mat-icon {
-    font-size: 4rem;
-    height: 4rem;
-    width: 4rem;
-    opacity: 0.5;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
   }
 }

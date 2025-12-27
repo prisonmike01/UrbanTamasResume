@@ -3,13 +3,10 @@
 @use '@angular/material' as mat;
 
 :host {
-  width: 100%;
+  @include mixins.full-width();
 }
 
 .products-section {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--secondary-container-dark);
 
   &__header {
     margin-top: 14px;

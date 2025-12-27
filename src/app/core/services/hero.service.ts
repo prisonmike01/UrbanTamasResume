@@ -11,7 +11,7 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
         label: 'Welcome',
         heroData: {
             title: 'Example shop for my resume',
-            subtitle: 'made with Angular 21',
+            subtitle: 'made with Angular 21 and Material Design 3',
             author: 'by Tamás Urbán',
             data: [],
         }
@@ -38,7 +38,13 @@ const MOCK_HERO_TABS: Array<HeroTab> = [
             subtitle: 'Used technologies',
             author: '',
             data: [
-                'majd ide'
+                'standalone components',
+                'signal(), computed(), effect() and input(), output() bindings',
+                '@if, @for, @empty structural directives',
+                'dependency injection with inject(), RxJS interop with toSignal()',
+                '!!! signal forms',
+                '!!! guarded routes, router events, resolvers, http interceptors',
+                'usage of lazy loading and @defer',
             ],
         }
     }

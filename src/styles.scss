@@ -8,6 +8,8 @@
 @use './styles/base/reset';
 @use './styles/base/typography';
 @use './styles/components/titles';
+@use './styles/components/mat-icons';
+@use './styles/layouts/pages';
 @include mat.core();
 
 :root {
