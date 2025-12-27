@@ -1,6 +1,6 @@
 // Angular
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 
 // App
@@ -10,6 +10,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
-    provideRouter(routes, withComponentInputBinding())
+    provideRouter(
+      routes, 
+      withComponentInputBinding(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+    )
   ]
 };
