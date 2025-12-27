@@ -1,5 +1,6 @@
 // Angular
 import { Injectable, inject, signal, computed } from '@angular/core';
+import { map, of, tap } from 'rxjs';
 
 // App
 import { ProductService } from './product.service';
@@ -24,10 +25,18 @@ export class ProductFacade {
   readonly pageIndex = signal(0);
   readonly pageSize = signal(6);
 
-  constructor() {
-    this.productService.getProducts().subscribe(products => {
-      this.products.set(products);
-    });
+  constructor() {}
+
+  // Data Loading
+  loadProducts() {
+    // If we already have products, don't fetch again (simple cache strategy)
+    if (this.products().length > 0) {
+      return of(this.products());
+    }
+
+    return this.productService.getProducts().pipe(
+      tap(products => this.products.set(products))
+    );
   }
 
   // Computed Selectors
