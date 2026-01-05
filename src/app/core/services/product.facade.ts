@@ -25,7 +25,7 @@ export class ProductFacade {
   readonly pageIndex = signal(0);
   readonly pageSize = signal(6);
 
-  constructor() {}
+  constructor() { }
 
   // Data Loading
   loadProducts() {
@@ -92,24 +92,31 @@ export class ProductFacade {
   }
 
   toggleFavorite(productId: number) {
-    this.products.update(products =>
-      products.map(p =>
-        p.id === productId ? { ...p, favourite: !p.favourite } : p
-      )
-    );
+    // send update to server
+    this.productService.toggleFavorite(productId).subscribe({
+      next: (updatedProduct) => {
+        this.products.update(products =>
+          products.map(p =>
+            p.id === updatedProduct.id ? updatedProduct : p
+          )
+        );
 
-    const product = this.getProductById(productId);
-    const message = `${product?.name} ${(product?.favourite ? 'added to favorites' : 'removed from favorites')}`;
-
-    this.notificationService.showSuccess(message);
+        const message = `${updatedProduct.name} ${(updatedProduct.favourite ? 'added to favorites' : 'removed from favorites')}`;
+        this.notificationService.showSuccess(message);
+      },
+      error: (err) => {
+        console.error('Failed to toggle favorite', err);      
+        this.notificationService.showError('Failed to update favorite status');
+      }
+    });
   }
 
   getRelatedProducts(product: Product): Product[] {
     if (!product || !product.types) return [];
 
     return this.products()
-      .filter(p => 
-        p.id !== product.id && 
+      .filter(p =>
+        p.id !== product.id &&
         p.types.some(type => product.types.includes(type))
       );
   }

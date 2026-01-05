@@ -16,4 +16,8 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
   }
+
+  toggleFavorite(id: number): Observable<Product> {
+    return this.http.patch<Product>(`${this.apiUrl}/${id}/favorite`, {});
+  }
 }
