@@ -17,3 +17,8 @@ export interface Product {
   types: ProductType[];
 }
 
+export interface PaginatedResult<T> {
+  items: T[];
+  total: number;
+}
+

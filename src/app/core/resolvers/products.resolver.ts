@@ -5,9 +5,9 @@ import { catchError, of, timeout } from 'rxjs';
 
 // App
 import { ProductFacade } from '../services/product.facade';
-import { Product } from '../../shared/models/product.model';
+import { PaginatedResult, Product } from '../../shared/models/product.model';
 
-export const productsResolver: ResolveFn<Product[]> = (route, state) => {
+export const productsResolver: ResolveFn<PaginatedResult<Product>> = (route, state) => {
   const productFacade = inject(ProductFacade);
   const router = inject(Router);
 
@@ -16,7 +16,7 @@ export const productsResolver: ResolveFn<Product[]> = (route, state) => {
     catchError((error) => {
       console.error('Products Resolver failed:', error);
       router.navigate(['/not-found']);
-      return of([]);
+      return of({ items: [], total: 0 });
     })
   );
 };

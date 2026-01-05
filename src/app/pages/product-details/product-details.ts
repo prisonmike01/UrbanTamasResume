@@ -34,6 +34,7 @@ export default class ProductDetails {
   protected readonly facade = inject(ProductFacade);
   protected readonly cartService = inject(CartService);
 
+  // withComponentInputBinding
   readonly id = input.required<string>();
 
   protected product = computed(() => {
