@@ -97,16 +97,4 @@ export class ProductFacade {
       }
     });
   }
-
-  getRelatedProducts(product: Product): Product[] {
-    // Note: In a real app, this should probably be a server call too
-    // For now, it will only find related products within the current page
-    if (!product || !product.types) return [];
-
-    return this.products()
-      .filter(p =>
-        p.id !== product.id &&
-        p.types.some(type => product.types.includes(type))
-      );
-  }
 }

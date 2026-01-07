@@ -38,6 +38,10 @@ export class ProductService {
     return this.http.get<PaginatedResult<Product>>(this.apiUrl, { params });
   }
 
+  getRelatedProducts(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/${id}/related`);
+  }
+
   toggleFavorite(id: number): Observable<Product> {
     return this.http.patch<Product>(`${this.apiUrl}/${id}/favorite`, {});
   }
