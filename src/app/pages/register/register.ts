@@ -85,11 +85,11 @@ export default class Register {
       return registerSuccess ? null : { email: ['Registration failed'] };
     });
 
-    if (registerSuccess) {
+    /* if (registerSuccess) {
       this.notificationService.showSuccess('Registration successful! Welcome!');
       this.router.navigate(['/']);
     } else {
       this.notificationService.showError('Registration failed. Please try again.');
-    }
+    } */
   }
 }
