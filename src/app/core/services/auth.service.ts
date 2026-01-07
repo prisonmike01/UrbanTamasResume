@@ -1,5 +1,8 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
+import { lastValueFrom, of } from 'rxjs';
 import { User } from '../../shared/models/auth.model';
 
 @Injectable({
@@ -7,57 +10,58 @@ import { User } from '../../shared/models/auth.model';
 })
 export class AuthService {
   private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:8080/api/auth';
   
   // State
-  readonly currentUser = signal<User | null>(this.loadUser());
+  readonly currentUser = signal<User | null>(null);
   readonly isLoggedIn = computed(() => !!this.currentUser());
 
-  constructor() {}
+  constructor() {
+    this.checkSession();
+  }
 
-  async login(email: string, password: string) {
-    // Mock authentication logic
-    if (email && password && password.length >= 6) {
-      const user: User = {
-        id: 1,
-        email: email,
-        name: email.split('@')[0], // Default name from email if not provided
-        token: 'mock-jwt-token-123456'
-      };
+  // Check if session is still active on page reload
+  private checkSession() {
+    this.http.get<User>(`${this.apiUrl}/me`, { withCredentials: true }).subscribe({
+      next: (user) => this.currentUser.set(user),
+      error: () => this.currentUser.set(null)
+    });
+  }
 
+  async login(email: string, password: string): Promise<boolean> {
+    try {
+      const user = await lastValueFrom(
+        this.http.post<User>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true })
+      );
       this.currentUser.set(user);
-      localStorage.setItem('user', JSON.stringify(user));
       return true;
+    } catch (error) {
+      console.error('Login failed', error);
+      return false;
     }
-    return false;
   }
 
   async register(name: string, email: string, password: string): Promise<boolean> {
-    // Mock registration logic
-    if (name && email && password && password.length >= 6) {
-      const user: User = {
-        id: Math.floor(Math.random() * 1000), // random ID
-        name: name,
-        email: email,
-        token: 'mock-jwt-token-' + Date.now()
-      };
-
-      // In a real app, we would send a POST request to the API
-      // For this mock, we'll just log them in immediately
+    try {
+      const user = await lastValueFrom(
+        this.http.post<User>(`${this.apiUrl}/register`, { name, email, password }, { withCredentials: true })
+      );
       this.currentUser.set(user);
-      localStorage.setItem('user', JSON.stringify(user));
       return true;
+    } catch (error) {
+      console.error('Registration failed', error);
+      return false;
     }
-    return false;
   }
 
   logout(): void {
-    this.currentUser.set(null);
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
-  }
-
-  private loadUser(): User | null {
-    const storedUser = localStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
+    this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true }).subscribe({
+      next: () => {
+        this.currentUser.set(null);
+        this.router.navigate(['/login']);
+      },
+      error: (err) => console.error('Logout failed', err)
+    });
   }
 }

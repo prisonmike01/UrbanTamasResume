@@ -71,7 +71,7 @@ export class CartService {
       return;
     }
 
-    this.http.patch<CartItem[]>(`${this.apiUrl}/${productId}`, { quantity }, { withCredentials: true })
+    this.http.patch<CartItem[]>(`${this.apiUrl}/${productId}`, { productId, quantity }, { withCredentials: true })
       .subscribe({
         next: (updatedCart) => this.items.set(updatedCart),
         error: (err) => this.notificationService.showError('Failed to update quantity')
