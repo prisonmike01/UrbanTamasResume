@@ -1,6 +1,7 @@
 // Angular
-import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 // App
 import { CartItem } from '../../shared/models/cart.model';
@@ -13,8 +14,10 @@ import { NotificationService } from './notification.service';
 export class CartService {
   private readonly notificationService = inject(NotificationService);
   private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:8080/api/cart';
 
-  readonly items = signal<CartItem[]>(this.loadCart());
+  readonly items = signal<CartItem[]>([]);
 
   readonly count = computed(() => this.items().length);
 
@@ -27,40 +30,39 @@ export class CartService {
   readonly isCartEmpty = computed(() => this.count() === 0);
 
   constructor() {
-    effect(() => {
-      localStorage.setItem('cart', JSON.stringify(this.items()));
+    this.loadCart();
+  }
+
+  private loadCart(): void {
+    this.http.get<CartItem[]>(this.apiUrl, { withCredentials: true }).subscribe({
+      next: (items) => this.items.set(items),
+      error: (err) => console.error('Failed to load cart', err)
     });
   }
 
   addItem(product: Product): void {
-    const isNewItem = this.addToCart(product);
-    const message = isNewItem ? `${product.name} added to cart!` : `${product.name} quantity updated!`;
 
-    this.notificationService.showSuccess(message, 'View Cart', () => {
-      this.router.navigate(['/cart']);
-    });
+    this.http.post<CartItem[]>(this.apiUrl, { productId: product.id, quantity: 1 }, { withCredentials: true })
+      .subscribe({
+        next: (updatedCart) => {
+          this.items.set(updatedCart);
+          this.notificationService.showSuccess("added to cart", 'View Cart', () => {
+            this.router.navigate(['/cart']);
+          });
+        },
+        error: (err) => {
+          console.error('Failed to add item to cart', err);
+          this.notificationService.showError('Failed to add item to cart');
+        }
+      });
   }
-
-  private addToCart(product: Product): boolean {
-    const existingItem = this.items().find(item => item.product.id === product.id);
-
-    this.items.update(items => {
-      if (existingItem) {
-        return items.map(item =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...items, { product, quantity: 1 }];
-    });
-
-    return !existingItem;
-  }
-
 
   removeFromCart(productId: number): void {
-    this.items.update(items => items.filter(item => item.product.id !== productId));
+    this.http.delete<CartItem[]>(`${this.apiUrl}/${productId}`, { withCredentials: true })
+      .subscribe({
+        next: (updatedCart) => this.items.set(updatedCart),
+        error: (err) => this.notificationService.showError('Failed to remove item')
+      });
   }
 
   updateQuantity(productId: number, quantity: number): void {
@@ -69,21 +71,18 @@ export class CartService {
       return;
     }
 
-    this.items.update(items =>
-      items.map(item =>
-        item.product.id === productId
-          ? { ...item, quantity }
-          : item
-      )
-    );
+    this.http.patch<CartItem[]>(`${this.apiUrl}/${productId}`, { quantity }, { withCredentials: true })
+      .subscribe({
+        next: (updatedCart) => this.items.set(updatedCart),
+        error: (err) => this.notificationService.showError('Failed to update quantity')
+      });
   }
 
   clearCart(): void {
-    this.items.set([]);
-  }
-
-  private loadCart(): CartItem[] {
-    const storedCart = localStorage.getItem('cart');
-    return storedCart ? JSON.parse(storedCart) : [];
+    this.http.delete<CartItem[]>(this.apiUrl, { withCredentials: true })
+      .subscribe({
+        next: (updatedCart) => this.items.set(updatedCart),
+        error: (err) => this.notificationService.showError('Failed to clear cart')
+      });
   }
 }
